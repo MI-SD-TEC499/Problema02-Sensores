@@ -2,16 +2,16 @@
 
 ### Integrantes: Daniel Costa, Diego Silva e Matheus Menezes
 
-## Introdução 
+## 1. Introdução 
 
-## Ambiente e Ferramentas
+## 2. Ambiente e Ferramentas
 
-### Ambiente
+### 2.1 Ambiente
 
-### Outras ferramentas
+### 2.2 Outras ferramentas
 
-## Desenvolvimento
+## 3. Desenvolvimento
 
-## Testes de Funcionamento
+## 4. Testes de Funcionamento
 
 gcc teste.c start.o -o start
