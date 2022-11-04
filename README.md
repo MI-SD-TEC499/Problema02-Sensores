@@ -1,6 +1,6 @@
 # Problema 02 - Sensores
 
-### Integrantes: Daniel Costa, Diego Silva e Matheus Menezes
+### Integrantes: Daniel Costa, Diego Silva e Thiago Menezes
 
 ## 1. Introdução 
 
