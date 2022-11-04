@@ -10,7 +10,7 @@ O problema apresentado a seguir consistiu no desenvolvimento de um sistema que i
 
 ## 2. Ambiente e Ferramentas
 
-O problema foi desenvolvido para funcionar em uma Raspberry Pi Zero (ou Orange PI PC Plus), utilizando como periférico de saída um display LCD Hitachi HD44780U (LCD-II) de 16x2. Essa Raspberry possui arquitetura ARMv6 de 32bits.
+O problema foi desenvolvido para funcionar em uma Raspberry Pi Zero, utilizando como periférico de saída um display LCD Hitachi HD44780U (LCD-II) de 16x2. Essa Raspberry possui arquitetura ARMv6 de 32bits.
 
 O projeto também utiliza uma ESP8266 (NodeMCU) conectada a sensores de umidade e temperatura analógicos e digitais. Os sensores digitais são emulados por push buttons e o analógico por um potenciômetro.
 
@@ -19,6 +19,16 @@ Para comunicação com os periféricos e para a utilização da UART, foi utiliz
 Para edição, compilação e upload de código para a NodeMCU foi utilizada a ArduinoIDE, enquanto para a Orange Pi foi necessário apenas o Nano.
 
 ## 3. Desenvolvimento
+
+### 3.1 Raspberry Pi Zero
+
+Na Raspberry Pi foi desenvolvido o código responsável por fazer o envio de códigos via UART para realizar solicitações de serviços para a ESP8266.
+
+{{ CÓDIGO DE ENVIO DE MENSAGEM }}
+
+Também foi utilizada a biblioteca WiringPI para realizar a escrita no display.
+
+### 3.2 NodeMCU (ESP8266)
 
 ## 4. Testes de Funcionamento
 
