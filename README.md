@@ -27,7 +27,8 @@ Primeiro será apresentado o fluxo do projeto e em seguida as implementações e
 De forma simplificada, o projeto consiste no envio de informações via UART da Raspberry Pi para a NodeMCU, que tomara um curso de ação de acordo a informação recebida. O fluxo mais comum consiste em ler a informação vinda dos sensores e enviá-la de volta via UART para a Raspberry Pi que se encarregará de exibi-la no display. Para outros casos, pode não ocorrer a leitura da informações dos sensores, mas todos seguem o fluxo de comunicação de volta e exibição da informação no LCD.
 
 {{ DIAGRAMA DO PROJETO }}
-![diagrama](https://user-images.githubusercontent.com/38412142/199863945-d03c54ee-b5ee-478d-983f-5fad535305c4.png)
+
+![diagrama2](https://user-images.githubusercontent.com/38412142/199864012-eaaeb39f-32b8-4355-ba21-03b63e2f739f.png)
 
 
 ### 3.2 Raspberry Pi Zero
