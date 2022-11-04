@@ -20,15 +20,27 @@ Para edição, compilação e upload de código para a NodeMCU foi utilizada a A
 
 ## 3. Desenvolvimento
 
-### 3.1 Raspberry Pi Zero
+Primeiro será apresentado o fluxo do projeto e em seguida as implementações em cada um dos SBCs.
+
+### 3.1 Fluxo de funcionamento do projeto
+
+De forma simplificada, o projeto consiste no envio de informações via UART da Raspberry Pi para a NodeMCU, que tomara um curso de ação de acordo a informação recebida. O fluxo mais comum consiste em ler a informação vinda dos sensores e enviá-la de volta via UART para a Raspberry Pi que se encarregará de exibi-la no display. Para outros casos, pode não ocorrer a leitura da informações dos sensores, mas todos seguem o fluxo de comunicação de volta e exibição da informação no LCD.
+
+{{ DIAGRAMA DO PROJETO }}
+
+### 3.2 Raspberry Pi Zero
 
 Na Raspberry Pi foi desenvolvido o código responsável por fazer o envio de códigos via UART para realizar solicitações de serviços para a ESP8266.
 
 {{ CÓDIGO DE ENVIO DE MENSAGEM }}
 
+Seguindo o funcionamento do protocolo UART, os dados são enviados de forma paralela para a UART, que os transmite de forma serial para a UART da ESP8266. 
+
 Também foi utilizada a biblioteca WiringPI para realizar a escrita no display.
 
-### 3.2 NodeMCU (ESP8266)
+### 3.3 NodeMCU (ESP8266)
+
+Na NodeMCU há dois grandes módulos implementados. A leitura de informação dos sensores analógicos e digital, e assim como na Raspberry, a comunicação UART.
 
 ## 4. Testes de Funcionamento
 
