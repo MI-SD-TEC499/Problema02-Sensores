@@ -42,6 +42,8 @@ Também foi utilizada a biblioteca WiringPI para realizar a escrita no display.
 
 Na NodeMCU há dois grandes módulos implementados. A leitura de informação dos sensores analógicos e digital, e assim como na Raspberry, a comunicação UART.
 
+Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelamente e os envia para a UART para que os transmita de volta para a UART da Raspberry Pi.
+
 ## 4. Testes de Funcionamento
 
 gcc teste.c start.o -o start
