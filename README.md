@@ -33,15 +33,50 @@ De forma simplificada, o projeto consiste no envio de informações via UART da 
 Na Raspberry Pi foi desenvolvido o código responsável por fazer o envio de códigos via UART para realizar solicitações de serviços para a ESP8266, assim como aguarda a resposta.
 
 ```c
-    file_write_data(g_fd,writeTest,sizeof(writeTest));
-    sleep(1);
-    memset(l_buff,0,l_len_buff);
-    file_read_data(g_fd,writeTest,sizeof(readTest));
+file_write_data(g_fd,writeTest,sizeof(writeTest));
+sleep(1);
+memset(l_buff,0,l_len_buff);
+file_read_data(g_fd,writeTest,sizeof(readTest));
 ```
 
 Seguindo o funcionamento do protocolo UART, os dados são enviados de forma paralela para a UART, que os transmite de forma serial para a UART da ESP8266. 
 
 Também foi utilizada a biblioteca WiringPI para realizar a escrita no display.
+
+```c
+void print_display(int num, int value){
+    int lcd;
+    wiringPiSetup();        
+    lcd = lcdInit (2, 16, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0);
+    int code = num;
+    switch(code){
+	    case 0:
+	        lcdPrintf(lcd,"NODEMCU: ON");    
+	    break;
+	    case 9:
+        	lcdPrintf(lcd,"NODEMCU: OFF");    
+        break;
+        case 1:
+        	lcdPrintf(lcd,"Potênciometro: %d", value);
+        break;
+        case 2:
+        	lcdPrintf(lcd,"Temperatura: %d ºC", value);
+        break;
+        case 3:
+        	lcdPrintf(lcd,"Umidade: %d %%", value);
+        break;
+        case 4:
+        	lcdPrintf(lcd,"LED: ON");
+        break;
+        case 5:
+        	lcdPrintf(lcd,"LED: OFF");
+        default:
+        	lcdPrintf(lcd,"ERRO");        
+	    break;
+    }
+}
+
+```
 
 ### 3.3 NodeMCU (ESP8266)
 
