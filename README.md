@@ -90,6 +90,7 @@ if((situacao[i] != 0){
             Serial.write(resposta);
             delay(2000);
 ```
+Inicialmente o sensor digital seria um DHT11, porém, para o problema foram utilizados *push buttons* para simular o comportamento.
 
 Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelamente e os envia para a UART para que os transmita de volta para a UART da Raspberry Pi.
 
