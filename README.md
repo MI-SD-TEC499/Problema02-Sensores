@@ -82,6 +82,15 @@ void print_display(int num, int value){
 
 Na NodeMCU há dois grandes módulos implementados. A leitura de informação dos sensores analógicos e digital, e assim como na Raspberry, a comunicação UART.
 
+```c
+if((situacao[i] != 0){
+        int menu = situacao[i];
+        switch (menu){
+          case 3:
+            Serial.write(resposta);
+            delay(2000);
+```
+
 Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelamente e os envia para a UART para que os transmita de volta para a UART da Raspberry Pi.
 
 ## 4. Testes de Funcionamento
