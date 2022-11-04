@@ -30,9 +30,14 @@ De forma simplificada, o projeto consiste no envio de informações via UART da 
 
 ### 3.2 Raspberry Pi Zero
 
-Na Raspberry Pi foi desenvolvido o código responsável por fazer o envio de códigos via UART para realizar solicitações de serviços para a ESP8266.
+Na Raspberry Pi foi desenvolvido o código responsável por fazer o envio de códigos via UART para realizar solicitações de serviços para a ESP8266, assim como aguarda a resposta.
 
-{{ CÓDIGO DE ENVIO DE MENSAGEM }}
+```c
+    file_write_data(g_fd,writeTest,sizeof(writeTest));
+    sleep(1);
+    memset(l_buff,0,l_len_buff);
+    file_read_data(g_fd,writeTest,sizeof(readTest));
+```
 
 Seguindo o funcionamento do protocolo UART, os dados são enviados de forma paralela para a UART, que os transmite de forma serial para a UART da ESP8266. 
 
