@@ -97,3 +97,5 @@ Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelament
 ## 4. Testes de Funcionamento
 
 gcc teste.c start.o -o start
+
+## 5. Referências
