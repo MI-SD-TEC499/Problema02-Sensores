@@ -100,10 +100,18 @@ Para testar a exibição dos dados no display, fizemos um *loopback*, ou seja, a
 
 Através disso, enviamos as possibilidades de respostas para o display, sendo elas: 
 - Verificação de modo;
+- 
 - Captação de umidade e temperatura digital
 - Captação de umidade e temperatura analógica
-- Acendimento de LED
-- Erro
+- Acendimento de LED![photo1667823005(1)](https://user-images.githubusercontent.com/38412142/200309429-97daedb0-ca4c-4c25-aaa5-57fa517d360b.jpeg)
+
+- Erro![photo1667823005(6)](https://user-images.githubusercontent.com/38412142/200309378-bf![photo1667823005](https://user-images.githubusercontent.com/38412142/200309423-8f2b1646-9a24-47db-b0e9-7f291cb1f34a.jpeg)
+fe4365-8059-4f2a-b567-1d4e55b7ef84.jpeg)
+![photo1667823005(5)](https://user-images.githubusercontent.com/38412142/200309387-dbee842a-75d7-4029-bdce-c68aa344bfdb.jpeg)
+![photo1667823005(4)](https://user-images.githubusercontent.com/38412142/200309393-644fe742-10ec-4faf-bea6-b01f2de68531.jpeg)
+![photo1667823005(3)](https://user-images.githubusercontent.com/38412142/200309399-d6ba91![photo1667823005(2)](https://user-images.githubusercontent.com/38412142/200309405-07561e52-08d2-499b-89c5-ca2cda97f90e.jpeg)
+e9-ca92-468d-940f-c72080c2c3d0.jpeg)
+
 -  {{ COMPLETAR A LISTA }}
 
 {{ ADICIONAR FOTOS DOS MODOS IMPRESSOS }}
