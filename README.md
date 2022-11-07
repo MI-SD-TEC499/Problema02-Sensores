@@ -101,22 +101,28 @@ Para testar a exibição dos dados no display, fizemos um *loopback*, ou seja, a
 Através disso, enviamos as possibilidades de respostas para o display, sendo elas: 
 - Verificação de modo;
 
-![photo1667823005](https://user-images.githubusercontent.com/38412142/200309423-8f2b1646-9a24-47db-b0e9-7f291cb1f34a.jpeg)
+![modo on](https://user-images.githubusercontent.com/38412142/200310928-61fd8057-2cb9-49b2-88a3-51d1107fba47.jpeg)
+![modo off](https://user-images.githubusercontent.com/38412142/200310953-5a2eb3f0-bdb1-4f5b-966a-e54e13041808.jpeg)
+
 
 - Captação de umidade e temperatura digital
 
-![photo1667823005(5)](https://user-images.githubusercontent.com/38412142/200309387-dbee842a-75d7-4029-bdce-c68aa344bfdb.jpeg)
-![photo1667823005(4)](https://user-images.githubusercontent.com/38412142/200309393-644fe742-10ec-4faf-bea6-b01f2de68531.jpeg)
+![temperatura](https://user-images.githubusercontent.com/38412142/200310991-d821f91b-b9d6-4d31-a308-047824ab8c5e.jpeg)
+![umidade](https://user-images.githubusercontent.com/38412142/200311000-d5f8fe8d-33cc-4683-9bfa-18c71c204337.jpeg)
+
 
 - Captação analógica
 
-- Acendimento de LED!
+![analogico](https://user-images.githubusercontent.com/38412142/200311160-e7443144-5432-4a91-9c24-50bebfbaca08.jpeg)
 
-![photo1667823005(2)](https://user-images.githubusercontent.com/38412142/200309405-07561e52-08d2-499b-89c5-ca2cda97f90e.jpeg)
+
+- Controle de LED
+
+![led on](https://user-images.githubusercontent.com/38412142/200311089-7d4910d3-42f2-4e2c-abee-58a1412318de.jpeg)
+![led off](https://user-images.githubusercontent.com/38412142/200311099-012d2626-60a6-4b22-8b3a-a71883ec35bf.jpeg)
 
 - Erro!
 
--  {{ COMPLETAR A LISTA }}
 
 {{ ADICIONAR FOTOS DOS MODOS IMPRESSOS }}
 
