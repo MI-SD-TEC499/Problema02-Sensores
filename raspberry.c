@@ -59,6 +59,9 @@ void print_display(int num, int value){
 
 
 // FILE OPERATION
+/*
+* Função que acessa o diretório especificado e retorna o file descriptor
+*/
 static int file_open_and_get_descriptor(const char *fname) {
     int fd;
 
@@ -108,10 +111,12 @@ static void configure_serial_port(void) {
         exit(EXIT_FAILURE);
     }
 
-	//115200
+/*
+* Funções para determinar a baudrate
+*/	
     cfsetispeed(&g_tty,B9600);
     cfsetospeed(&g_tty,B9600);
-
+//Função que faz as configurações finais da uart
     cfmakeraw(&g_tty);
 
     if(tcsetattr(g_fd,TCSANOW,&g_tty)) {
