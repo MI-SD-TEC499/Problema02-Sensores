@@ -96,6 +96,20 @@ Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelament
 
 ## 4. Testes de Funcionamento
 
+Para testar a exibição dos dados no display, fizemos um *loopback*, ou seja, a Raspberry recebe o mesmo dado que está enviando, com o propósito de verificar tanto a corretude do funcionamento da UART quanto das operações desejadas ao se receber um determinado dado.
+
+Através disso, enviamos as possibilidades de respostas para o display, sendo elas: 
+- Verificação de modo;
+- Captação de umidade e temperatura digital
+- Captação de umidade e temperatura analógica
+- Acendimento de LED
+- Erro
+-  {{ COMPLETAR A LISTA }}
+
+{{ ADICIONAR FOTOS DOS MODOS IMPRESSOS }}
+
+Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
+
 gcc teste.c start.o -o start
 
 ## 5. Referências
