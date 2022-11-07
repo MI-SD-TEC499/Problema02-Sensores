@@ -14,9 +14,9 @@ O problema foi desenvolvido para funcionar em uma Raspberry Pi Zero, utilizando 
 
 O projeto também utiliza uma ESP8266 (NodeMCU) conectada a sensores de umidade e temperatura analógicos e digitais. Os sensores digitais são emulados por push buttons e o analógico por um potenciômetro.
 
-Para comunicação com os periféricos e para a utilização da UART, foi utilizada a biblioteca WiringPi, e códigos produzidos em linguagem C.
+Para comunicação com os periféricos, foi utilizada a biblioteca WiringPi, enquanto que a utilização da UART ocorreu através dos comandos de controle e utilização oferecidos pela biblioteca TermIOs. Todos os códigos utilizados foram produzidos em linguagem C. 
 
-Para edição, compilação e upload de código para a NodeMCU foi utilizada a ArduinoIDE, enquanto para a Orange Pi foi necessário apenas o Nano.
+Para edição, compilação e upload de código para a NodeMCU foi utilizada a ArduinoIDE, enquanto para a Raspberry Pi foi necessário apenas o editor Nano.
 
 ## 3. Desenvolvimento
 
