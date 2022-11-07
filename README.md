@@ -14,7 +14,7 @@ O problema foi desenvolvido para funcionar em uma Raspberry Pi Zero, utilizando 
 
 O projeto também utiliza uma ESP8266 (NodeMCU) conectada a sensores de umidade e temperatura analógicos e digitais. Os sensores digitais são emulados por push buttons e o analógico por um potenciômetro.
 
-Para comunicação com os periféricos, foi utilizada a biblioteca WiringPi, enquanto que a utilização da UART ocorreu através dos comandos de controle e utilização oferecidos pela biblioteca TermIOs. Todos os códigos utilizados foram produzidos em linguagem C. 
+Para comunicação com os periféricos, tanto da NodeMCU quanto da Raspberry PI, foi utilizada a biblioteca WiringPi, enquanto que a utilização da UART ocorreu através dos comandos de controle e utilização oferecidos pela biblioteca TermIOs. Todos os códigos utilizados foram produzidos em linguagem C. Também foi necessária a utilização da bibliotca ArduinoOTA para possibilitar o carregamento de código na NodeMCU via Wifi.
 
 Para edição, compilação e upload de código para a NodeMCU foi utilizada a ArduinoIDE, enquanto para a Raspberry Pi foi necessário apenas o editor Nano.
 
@@ -94,7 +94,44 @@ Inicialmente o sensor digital seria um DHT11, porém, para o problema foram util
 
 Em caso de informações dos sensores, a NodeMCU recebe esses dados paralelamente e os envia para a UART para que os transmita de volta para a UART da Raspberry Pi.
 
-## 4. Testes de Funcionamento
+## 4. Executando o projeto
+
+### 4.1 NodeMCU
+
+Com o ambiente preparado, não se deve esquecer de inserir alguns trechos de código no projeto caso vá ser utilizado o upload via wifi, cada trecho deve ser colocado em sua respectiva parte do loop/setup ou fora deles. Esses trechos da ArduinoOTA ficarão assim:
+
+```c
+const char* ssid = "SSID-DA-REDE-A-SER-UTILIZADA";
+const char* password = "SENHA-DA-REDE-A-SER-UTILIZADA"; 
+
+void setup() {
+  Serial.begin(9600); //inicia a comunicação serial
+
+  WiFi.mode(WIFI_STA); //inicia o modo de conexão
+  WiFi.begin(ssid, password); //inicia a conexão com a rede
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) { //espera a conexão
+    delay(5000); 
+    ESP.restart(); //reinicia o ESP
+  }
+  ArduinoOTA.setHostname("HOST-DA-PLACA"); //define o nome do host
+
+  ArduinoOTA.begin(); //inicia o OTA
+}
+
+void loop() {
+  ArduinoOTA.handle(); //verifica se há atualizações
+}
+```
+
+Com isso configurado, e com a porta selecionada na interface da ArduinoIDE, basta realizar a verificação e upload do código na placa.
+
+### 4.2 Raspberry PI
+
+O processo na raspberry é mais simples, bastando acessar a placa via SSH (ou no método que preferir), carregar os arquivos do projeto, compilar, linkar e executar, sendo esses últimos passos possibilidatos pela utilização de um makefile.
+
+Com todos os componente em execução, já é possível realizar a utilização do projeto e testá-lo.
+
+## 5. Testes de Funcionamento
 
 Para testar a exibição dos dados no display, fizemos um *loopback*, ou seja, a Raspberry recebe o mesmo dado que está enviando, com o propósito de verificar tanto a corretude do funcionamento da UART quanto das operações desejadas ao se receber um determinado dado.
 
@@ -121,10 +158,8 @@ Através disso, enviamos as possibilidades de respostas para o display, sendo el
 ![led on](https://user-images.githubusercontent.com/38412142/200311089-7d4910d3-42f2-4e2c-abee-58a1412318de.jpeg)
 ![led off](https://user-images.githubusercontent.com/38412142/200311099-012d2626-60a6-4b22-8b3a-a71883ec35bf.jpeg)
 
-- Erro!
+- Erro
 
-
-{{ ADICIONAR FOTOS DOS MODOS IMPRESSOS }}
 
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
 
