@@ -1,6 +1,7 @@
 
 #execução dos executaveis
-all: sudo ./sensores
+all: 
+  sudo ./sensores
 
 # compilação e link com o código da lib
 build: raspberry.c
