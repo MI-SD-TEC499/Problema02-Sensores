@@ -210,3 +210,5 @@ Através disso, enviamos as possibilidades de respostas para o display, sendo el
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
 
 ## 5. Referências
+
+![WiringPi](http://wiringpi.com/reference/)
