@@ -127,7 +127,7 @@ Com isso configurado, e com a porta selecionada na interface da ArduinoIDE, bast
 
 ### 4.2 Raspberry PI
 
-O processo na raspberry é mais simples, bastando acessar a placa via SSH (ou no método que preferir), carregar os arquivos do projeto, compilar, linkar e executar, sendo esses últimos passos possibilidatos pela utilização de um makefile.
+O processo na raspberry é mais simples, bastando acessar a placa via SSH (ou no método que preferir), carregar os arquivos do projeto, compilar, linkar e executar, sendo esses últimos passos possibilitados pela utilização de um makefile. Para esse caso, basta executar o `make all`
 
 Com todos os componente em execução, já é possível realizar a utilização do projeto e testá-lo.
 
@@ -208,7 +208,5 @@ Através disso, enviamos as possibilidades de respostas para o display, sendo el
 
 
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
-
-gcc teste.c start.o -o start
 
 ## 5. Referências
