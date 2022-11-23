@@ -212,3 +212,6 @@ Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles pa
 ## 5. Referências
 
 ![WiringPi](http://wiringpi.com/reference/)
+
+![image](https://user-images.githubusercontent.com/38412142/203539817-56de0939-3f37-471f-a527-5240b47d8f22.png)
+
