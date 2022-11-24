@@ -49,10 +49,10 @@ void print_display(uint8_t *resposta){
         	//resposta[0] = 0;
             lcdPrintf(lcd,"Umidade: %d %%", resposta[1]);
         break;
-        case 0x04: //exibindo quando a led da NodeMCU fica ativada
+        case 0x04: //exibindo quando a led da NodeMCU fica desativada
         	lcdPrintf(lcd,"LED: OFF");
         break;
-        case 0x05: //exibindo quando a led da NodeMCU fica desativada
+        case 0x05: //exibindo quando a led da NodeMCU fica ativada
         	lcdPrintf(lcd,"LED: ON");
 	break;
         default: //caso aconteça algum erro
@@ -167,7 +167,6 @@ void receive_from_node(){
     }else{
         auxTest[tamanho] = '\0';
     }
-	printf("%c", auxTest[0]);
     print_display(auxTest);
 }
 
