@@ -199,30 +199,47 @@ Ao selecionar essa opção com a NodeMCU desligada, é esperado a exibição do 
 ![modo off](https://user-images.githubusercontent.com/38412142/200310953-5a2eb3f0-bdb1-4f5b-966a-e54e13041808.jpeg)
 
 
-- Captação de umidade e temperatura digital
-
-![temperatura](https://user-images.githubusercontent.com/38412142/200310991-d821f91b-b9d6-4d31-a308-047824ab8c5e.jpeg)
-![umidade](https://user-images.githubusercontent.com/38412142/200311000-d5f8fe8d-33cc-4683-9bfa-18c71c204337.jpeg)
-
-
 - Captação analógica
+
+Ao selecionar a opção 2 do menu, é esperado o comportamento de exibição do valor captado pelo potenciômetro que emula um sensor analógico. A imagem a seguir mostra a saída obtida, compatível com o valor obtido do potenciômetro
 
 ![analogico](https://user-images.githubusercontent.com/38412142/200311160-e7443144-5432-4a91-9c24-50bebfbaca08.jpeg)
 
 
+- Captação de umidade e temperatura digital
+
+Ao selecionar a opções 3, o display deve exibir o valor obtido através da leitura do sensor de temperatura digital, emulado por um push-button. Esse comportamento é exibido na imagem a seguir.
+
+![temperatura](https://user-images.githubusercontent.com/38412142/200310991-d821f91b-b9d6-4d31-a308-047824ab8c5e.jpeg)
+
+A opção 4, pretende mostrar o valor obtido pelo outro emulador de sensor digital, que capta a umidade. Também é possível observar na imagem o pleno funcionamento da solicitação dessa opção.
+
+![umidade](https://user-images.githubusercontent.com/38412142/200311000-d5f8fe8d-33cc-4683-9bfa-18c71c204337.jpeg)
+
 - Controle de LED
 
+Há no menu também o controle de leds, as opções 5 e 6 realizam as operações de ligar e desligar o led, respectivamente. Esse comportamento foi implementado de forma adequada e é possível atestar isso através do resultado exibido nas imagens seguintes.
+
+Exibição do display ao selecionar a opções 5:
+
 ![led on](https://user-images.githubusercontent.com/38412142/200311089-7d4910d3-42f2-4e2c-abee-58a1412318de.jpeg)
+
+Exibição do display ao selecionar a opção 6:
+
 ![led off](https://user-images.githubusercontent.com/38412142/200311099-012d2626-60a6-4b22-8b3a-a71883ec35bf.jpeg)
 
 - Erro
 
+Para situações não mapeadas, ou caso ocorra um erro em uma das operações, é esperado que seja exibido no display LCD uma mensagem contendo "ERRO", o que é possível observar na imagem seguinte, no caso em que foi inserido uma opção inválida do menu.
+
+[ ADICIONAR IMAGEM ERRO ]
 
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
 
 ## 5. Referências
 
-![WiringPi](http://wiringpi.com/reference/)
+- Documentação da Biblioteca WiringPi, para controle de periféricos da Raspberry através da linguagem C:
+ 
+[WiringPi](http://wiringpi.com/reference/)
 
-![image](https://user-images.githubusercontent.com/38412142/203539817-56de0939-3f37-471f-a527-5240b47d8f22.png)
 
