@@ -127,7 +127,8 @@ Com isso configurado, e com a porta selecionada na interface da ArduinoIDE, bast
 
 ### 4.2 Raspberry PI
 
-O processo na raspberry é mais simples, bastando acessar a placa via SSH (ou no método que preferir), carregar os arquivos do projeto, compilar, linkar e executar, sendo esses últimos passos possibilitados pela utilização de um makefile. Para esse caso, basta executar o `make all`.
+O processo na raspberry é mais simples, bastando acessar a placa via SSH (ou no método que preferir), carregar os arquivos do projeto, compilar, linkar e executar, sendo esses últimos passos possibilitados pela utilização de um makefile. 
+Para esse caso, basta acessar o diretório raíz do projeto através do terminal e executar o comando `make all`.
 
 Com todos os componente em execução, já é possível realizar a utilização do projeto e testá-lo.
 
@@ -179,12 +180,22 @@ static int file_read_data(int fd, uint8_t *buff, uint32_t len_buff) {
 
 ## 5. Testes de Funcionamento
 
-Para testar a exibição dos dados no display, fizemos um *loopback*, ou seja, a Raspberry recebe o mesmo dado que está enviando, com o propósito de verificar tanto a corretude do funcionamento da UART quanto das operações desejadas ao se receber um determinado dado.
+Para testar a exibição dos dados no display, foram realizados alguns testes do projeto. Esses testes objetivaram verificar tanto a corretude do funcionamento da UART quanto das operações desejadas ao se receber um determinado dado.
 
-Através disso, enviamos as possibilidades de respostas para o display, sendo elas: 
-- Verificação de modo;
+O projeto inicialmente apresenta um menu de opções, através do qual podemos realizar as operações desejadas, esse menu está apresentado na imagem seguinte.
+
+![image](https://user-images.githubusercontent.com/38412142/203539817-56de0939-3f37-471f-a527-5240b47d8f22.png)
+
+Cada uma das opções, espera um resposta apresentada no display lcd.
+
+- Verificação de modo
+
+Ao selecionar a opção 1 do menu, o resultado esperado é que seja apresentado o modo que a NodeMCU está no momento, podendo esse modo ser ligado ou desligado. Ao selecioná-la com ela ligada, o resultado seguinte é exibido:
 
 ![modo on](https://user-images.githubusercontent.com/38412142/200310928-61fd8057-2cb9-49b2-88a3-51d1107fba47.jpeg)
+
+Ao selecionar essa opção com a NodeMCU desligada, é esperado a exibição do modo OFF, como obtido na imagem a seguir:
+
 ![modo off](https://user-images.githubusercontent.com/38412142/200310953-5a2eb3f0-bdb1-4f5b-966a-e54e13041808.jpeg)
 
 
