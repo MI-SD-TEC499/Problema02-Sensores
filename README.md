@@ -12,7 +12,7 @@ O problema apresentado a seguir consistiu no desenvolvimento de um sistema que i
 
 O problema foi desenvolvido para funcionar em uma Raspberry Pi Zero, utilizando como periférico de saída um display LCD Hitachi HD44780U (LCD-II) de 16x2. Essa Raspberry possui arquitetura ARMv6 de 32bits.
 
-O projeto também utiliza uma ESP8266 (NodeMCU) conectada a sensores de umidade e temperatura analógicos e digitais. Os sensores digitais são emulados por push buttons e o analógico por um potenciômetro.
+O projeto também utiliza uma ESP8266 (NodeMCU) conectada a sensores de umidade e temperatura analógicos e digitais. Os sensores digitais são emulados por push buttons e o analógico por um potenciômetro. Para preparar o ambiente da ArduinoIDE para funcionar com a NodeMCU foi necessário importar a placa para a IDE, seguindo os passos de [como preparar a IDE Arduino para funcionar com a NodeMCU](https://www.filipeflop.com/blog/programar-nodemcu-com-ide-arduino/) foi possível realizar essa conexão.
 
 Para comunicação com os periféricos, tanto da NodeMCU quanto da Raspberry PI, foi utilizada a biblioteca WiringPi, enquanto que a utilização da UART ocorreu através dos comandos de controle e utilização oferecidos pela biblioteca TermIOs. Todos os códigos utilizados foram produzidos em linguagem C. Também foi necessária a utilização da bibliotca ArduinoOTA para possibilitar o carregamento de código na NodeMCU via Wifi.
 
