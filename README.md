@@ -192,7 +192,7 @@ Cada uma das opções, espera um resposta apresentada no display lcd.
 
 Ao selecionar a opção 1 do menu, o resultado esperado é que seja apresentado o modo que a NodeMCU está no momento, podendo esse modo ser ligado ou desligado. Ao selecioná-la com ela ligada, o resultado seguinte é exibido:
 
-![nodemcu on](https://user-images.githubusercontent.com/38412142/206601260-e89c0dca-e172-4162-835f-09484ccd100e.jpeg)
+![nodemcu on](https://user-images.githubusercontent.com/38412142/206601567-f4f230db-3d36-4291-b037-ee5021c8cdc5.jpeg)
 
 Ao selecionar essa opção com a NodeMCU desligada, é esperado a exibição do modo OFF, como obtido na imagem a seguir:
 
@@ -202,17 +202,17 @@ Ao selecionar essa opção com a NodeMCU desligada, é esperado a exibição do 
 
 Ao selecionar a opção 2 do menu, é esperado o comportamento de exibição do valor captado pelo potenciômetro que emula um sensor analógico. A imagem a seguir mostra a saída obtida, compatível com o valor obtido do potenciômetro
 
-![potenciometro](https://user-images.githubusercontent.com/38412142/206601292-f046ac03-5c72-4bbd-81e5-b734c534df9b.jpeg)
+![potenciometro](https://user-images.githubusercontent.com/38412142/206601603-e6331216-a172-43b8-875e-808521c1af69.jpeg)
 
 - Captação de umidade e temperatura digital
 
 Ao selecionar a opções 3, o display deve exibir o valor obtido através da leitura do sensor de temperatura digital, emulado por um push-button. Esse comportamento é exibido na imagem a seguir.
 
-![temperatura](https://user-images.githubusercontent.com/38412142/206601314-71141ff6-2ec6-4052-a51e-29170b4ba4b4.jpeg)
+![temperatura](https://user-images.githubusercontent.com/38412142/206601618-6f369889-6b8d-492d-af6d-c39b2a75429c.jpeg)
 
 A opção 4, pretende mostrar o valor obtido pelo outro emulador de sensor digital, que capta a umidade. Também é possível observar na imagem o pleno funcionamento da solicitação dessa opção.
 
-![umidade](https://user-images.githubusercontent.com/38412142/206601318-e5edb9a6-50cf-4fbd-b694-2cd62f7fa3ef.jpeg)
+![umidade](https://user-images.githubusercontent.com/38412142/206601651-f4c4cfc2-4df1-4284-92c0-d21332895be0.jpeg)
 
 - Controle de LED
 
@@ -220,11 +220,11 @@ Há no menu também o controle de leds, as opções 5 e 6 realizam as operaçõe
 
 Exibição do display ao selecionar a opções 5:
 
-![led on](https://user-images.githubusercontent.com/38412142/206601350-5bfab756-3b88-4a8f-a11e-9a48c0005511.jpeg)
+![led on](https://user-images.githubusercontent.com/38412142/206601684-69327f34-c09e-4196-a33d-dc0861cb4f55.jpeg)
 
 Exibição do display ao selecionar a opção 6:
 
-![led off](https://user-images.githubusercontent.com/38412142/206601359-1592da0d-4713-4634-9aff-6134bd0d1be6.jpeg)
+![led off](https://user-images.githubusercontent.com/38412142/206601689-8ce28744-f5c8-4346-b834-7bef723101a7.jpeg)
 
 - Erro
 
