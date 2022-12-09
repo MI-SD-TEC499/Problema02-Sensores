@@ -226,12 +226,6 @@ Exibição do display ao selecionar a opção 6:
 
 ![led off](https://user-images.githubusercontent.com/38412142/206601689-8ce28744-f5c8-4346-b834-7bef723101a7.jpeg)
 
-- Erro
-
-Para situações não mapeadas, ou caso ocorra um erro em uma das operações, é esperado que seja exibido no display LCD uma mensagem contendo "ERRO", o que é possível observar na imagem seguinte, no caso em que foi inserido uma opção inválida do menu.
-
-[ ADICIONAR IMAGEM ERRO ]
-
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
 
 ## 5. Referências
