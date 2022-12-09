@@ -9,24 +9,15 @@
 const char* ssid = "INTELBRAS"; //nome da rede utilizada
 const char* password = "Pbl-Sistemas-Digitais"; //senha da rede utilizada
 
-int adcValue = 0; // variável para armazenar o valor lido do potenciômetro
-int adcAux = 0; // variável auxiliar para armazenar o valor lido do potenciômetro
+int poten = 0; // variável para armazenar o valor lido do potenciômetro
 int temp = 27; //variável armazenando um valor para simular o sensor de temperatura
 int umid = 50; //variável armazenando um valor para simular o sensor de umidade
-char num_char[10 + sizeof(char)];
-int situacao[8]; //vetor armazenador do vetor enviado pela raspberry
-int i = 0; //variável auxiliar para for
 
-void setup() {
-  char resposta[8]; //vetor de resposta que será enviada para a raspberry
-  for (int j = 0; j < 8; j++) { //inicializando o vetor com '0'
-    resposta[j] = '0';
-  }
+byte comando;
+byte resposta;
 
-  pinMode(D1,INPUT); //pinagem do botão 1
-  pinMode(D2,OUTPUT); //pinagem do botão 2
-  pinMode(LED_BUILTIN, OUTPUT); //pinagem do led da nodeMCU
-  Serial.begin(9600); //inicia a comunicação serial
+void wifi_Setup(){
+  Serial.begin(115200); //inicia a comunicação serial
 
   WiFi.mode(WIFI_STA); //inicia o modo de conexão
   WiFi.begin(ssid, password); //inicia a conexão com a rede
@@ -39,68 +30,80 @@ void setup() {
   ArduinoOTA.begin(); //inicia o OTA
 }
 
+void setup() {
+
+  pinMode(D1,INPUT); //pinagem do botão 1
+  pinMode(D2,INPUT); //pinagem do botão 2
+  pinMode(LED_BUILTIN, OUTPUT); //pinagem do led da nodeMCU
+  
+  wifi_Setup();
+
+  Serial.begin(9600);
+}
+
 
 
 void loop() {
   ArduinoOTA.handle(); //verifica se há atualizações
 
-
-  if(digitalRead(D1)==1){ //verifica se estar ocorrendo modificação no botão D1
+  if(digitalRead(D1)==0){ //verifica se estar ocorrendo modificação no botão D1
     temp = temp + 1; //incrementando o valor da temperatura
+    delay(500);
   }
-  if(digitalRead(D2)==1){ //verifica se estar ocorrendo modificação no botão D2
+  if(digitalRead(D2)==0){ //verifica se estar ocorrendo modificação no botão D2
     umid = umid + 1; //incrementando o valor da umidade
+    delay(500);
   }
 
   if (Serial.available()>0){ //caso tenha dados sendo recebidos
-      
-      situacao[i] = Serial.read(); //leitura do bit recebido
-      delay(2000); 
+      comando = Serial.read(); //leitura do bit recebido
+      delay(500); 
 
-      if((situacao[i] != 0){ //caso seja diferente de '0' é o valor da instrução solicidada
-        int menu = situacao[i]; //variável auxiliar
-        switch (menu){ 
-            case 1: //caso solicite o valor da umidade
-               sprintf(num_char, "%d", umid); //transformando de int para um vetor de char
-               //armazenando o valor no final do vetor de resposta
-               resposta[6] = num_char[0]; 
-               resposta[7] = num_char[1];
-               Serial.write(resposta); //enviando o vetor de resposta para a raspberry
-               delay(2000);
-            break;
-            case 2: //caso solicite o valor da temperatura
-               sprintf(num_char, "%d", temp); //transformando de int para um vetor de char
-               //armazenando o valor no final do vetor de resposta
-               resposta[6] = num_char[0];
-               resposta[7] = num_char[1];
-               Serial.write(resposta); //enviando o vetor de resposta para a raspberry
-               delay(2000);
-            break;
-            case 3: //caso solicite a situação da NodeMCU
-               Serial.write(resposta); //enviando o vetor de resposta para a raspberry
-               delay(2000);
-            break;
-            case 4: //caso solicite o valor do potênciometro
-               adcValue = analogRead(analogPin); //leitura do valor do potênciometro
-               sprintf(num_char, "%d", adcValue); //transformando de int para um vetor de char
-               //armazenando o valor no final do vetor de resposta
-               resposta[6] = num_char[0];
-               resposta[7] = num_char[1];
-               Serial.write(resposta); //enviando o vetor de resposta para a raspberry
-               delay(2000);
-            break; 
-            case 5: //caso solicite para desligar a led da NodeMCU
-               digitalWrite(LED_BUILTIN, HIGH); //desligando a led (funcionamento em lógica inversa)
-               delay(2000);
-            break;
-            case 6: //caso solicite para ligar a led da NodeMCU
-               digitalWrite(LED_BUILTIN, LOW); //ligando a led (funcionamento em lógica inversa)
-               delay(2000);
-            break;
-            default:
-            break;
-        }
-      }  
-      i = i + 1; //percorrendo o vetor recebido como instruç
    }
-}
+   
+   switch (comando){ 
+      case 0x01: //caso solicite o valor da umidade
+         resposta = 0x03;
+         Serial.write(resposta); //enviando o vetor de resposta para a raspberry
+         Serial.print(umid);
+         delay(500); 
+
+      break;
+      case 0x02: //caso solicite o valor da temperatura
+         resposta = 0x02;   
+         Serial.write(resposta); //enviando o vetor de resposta para a raspberry
+         Serial.print(temp);
+         delay(500); 
+
+      break;
+      case 0x03: //caso solicite a situação da NodeMCU
+         resposta = 0x00;
+         Serial.write(resposta); //enviando o vetor de resposta para a raspberry
+         delay(500); 
+
+      break;
+      case 0x04: //caso solicite o valor do potênciometro
+         poten = analogRead(analogPin); //leitura do valor do potênciometro
+         resposta = 0x01;
+         Serial.write(resposta); //enviando o vetor de resposta para a raspberry
+         Serial.print(poten);
+         delay(500); 
+
+      break; 
+      case 0x05: //caso solicite para desligar a led da NodeMCU
+         resposta = 0x04;
+         digitalWrite(LED_BUILTIN, HIGH); //desligando a led (funcionamento em lógica inversa)
+         Serial.write(resposta);
+         delay(500); 
+
+      break;
+      case 0x06: //caso solicite para ligar a led da NodeMCU
+         resposta = 0x05;
+         digitalWrite(LED_BUILTIN, LOW); //ligando a led (funcionamento em lógica inversa)
+         Serial.write(resposta);
+         delay(500); 
+
+      break;
+
+   }
+}  
