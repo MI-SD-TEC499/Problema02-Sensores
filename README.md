@@ -44,38 +44,38 @@ Seguindo o funcionamento do protocolo UART, os dados são enviados de forma para
 Também foi utilizada a biblioteca WiringPI para realizar a escrita no display.
 
 ```c
-void print_display(int num, int value){
-    int lcd;
-    wiringPiSetup();        
-    lcd = lcdInit (2, 16, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0);
-    int code = num;
+void print_display(uint8_t *resposta){
+    int lcd; //variável para manipulação do lcd
+    wiringPiSetup(); //configuração do display        
+    lcd = lcdInit (2, 16, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0); //pinando o display
+    int code = resposta[0]; //variável auxiliar 
     switch(code){
-	    case 0:
-	        lcdPrintf(lcd,"NODEMCU: ON");    
-	    break;
-	    case 9:
+	case 0x00: //caso a comunicação com a NodeMCU esteja funcionando corretamente
+		lcdPrintf(lcd,"NODEMCU: ON");    
+	break;
+	case 0x09: //caso a comunicação com a NodeMCU não esteja funcionando corretamente
         	lcdPrintf(lcd,"NODEMCU: OFF");    
         break;
-        case 1:
-        	lcdPrintf(lcd,"Potênciometro: %d", value);
+        case 0x01: //exibição do valor obtido do potênciomento
+        	lcdPrintf(lcd,"Potenciometro: %d", resposta[1]);
         break;
-        case 2:
-        	lcdPrintf(lcd,"Temperatura: %d ºC", value);
+        case 0x02: //exibição do valor obtido do sensor de temperatura
+        	lcdPrintf(lcd,"Temperatura: %d C", resposta[1]);
         break;
-        case 3:
-        	lcdPrintf(lcd,"Umidade: %d %%", value);
+        case 0x03: //exibição do valor obtido do sensor de umidade
+            lcdPrintf(lcd,"Umidade: %d %%", resposta[1]);
         break;
-        case 4:
-        	lcdPrintf(lcd,"LED: ON");
-        break;
-        case 5:
+        case 0x04: //exibindo quando a led da NodeMCU fica desativada
         	lcdPrintf(lcd,"LED: OFF");
-        default:
+        break;
+        case 0x05: //exibindo quando a led da NodeMCU fica ativada
+        	lcdPrintf(lcd,"LED: ON");
+	break;
+        default: //caso aconteça algum erro
         	lcdPrintf(lcd,"ERRO");        
-	    break;
+	break;
     }
 }
-
 ```
 
 ### 3.3 NodeMCU (ESP8266)
@@ -192,29 +192,27 @@ Cada uma das opções, espera um resposta apresentada no display lcd.
 
 Ao selecionar a opção 1 do menu, o resultado esperado é que seja apresentado o modo que a NodeMCU está no momento, podendo esse modo ser ligado ou desligado. Ao selecioná-la com ela ligada, o resultado seguinte é exibido:
 
-![modo on](https://user-images.githubusercontent.com/38412142/200310928-61fd8057-2cb9-49b2-88a3-51d1107fba47.jpeg)
+![nodemcu on](https://user-images.githubusercontent.com/38412142/206601260-e89c0dca-e172-4162-835f-09484ccd100e.jpeg)
 
 Ao selecionar essa opção com a NodeMCU desligada, é esperado a exibição do modo OFF, como obtido na imagem a seguir:
 
 ![modo off](https://user-images.githubusercontent.com/38412142/200310953-5a2eb3f0-bdb1-4f5b-966a-e54e13041808.jpeg)
 
-
 - Captação analógica
 
 Ao selecionar a opção 2 do menu, é esperado o comportamento de exibição do valor captado pelo potenciômetro que emula um sensor analógico. A imagem a seguir mostra a saída obtida, compatível com o valor obtido do potenciômetro
 
-![analogico](https://user-images.githubusercontent.com/38412142/200311160-e7443144-5432-4a91-9c24-50bebfbaca08.jpeg)
-
+![potenciometro](https://user-images.githubusercontent.com/38412142/206601292-f046ac03-5c72-4bbd-81e5-b734c534df9b.jpeg)
 
 - Captação de umidade e temperatura digital
 
 Ao selecionar a opções 3, o display deve exibir o valor obtido através da leitura do sensor de temperatura digital, emulado por um push-button. Esse comportamento é exibido na imagem a seguir.
 
-![temperatura](https://user-images.githubusercontent.com/38412142/200310991-d821f91b-b9d6-4d31-a308-047824ab8c5e.jpeg)
+![temperatura](https://user-images.githubusercontent.com/38412142/206601314-71141ff6-2ec6-4052-a51e-29170b4ba4b4.jpeg)
 
 A opção 4, pretende mostrar o valor obtido pelo outro emulador de sensor digital, que capta a umidade. Também é possível observar na imagem o pleno funcionamento da solicitação dessa opção.
 
-![umidade](https://user-images.githubusercontent.com/38412142/200311000-d5f8fe8d-33cc-4683-9bfa-18c71c204337.jpeg)
+![umidade](https://user-images.githubusercontent.com/38412142/206601318-e5edb9a6-50cf-4fbd-b694-2cd62f7fa3ef.jpeg)
 
 - Controle de LED
 
@@ -222,11 +220,11 @@ Há no menu também o controle de leds, as opções 5 e 6 realizam as operaçõe
 
 Exibição do display ao selecionar a opções 5:
 
-![led on](https://user-images.githubusercontent.com/38412142/200311089-7d4910d3-42f2-4e2c-abee-58a1412318de.jpeg)
+![led on](https://user-images.githubusercontent.com/38412142/206601350-5bfab756-3b88-4a8f-a11e-9a48c0005511.jpeg)
 
 Exibição do display ao selecionar a opção 6:
 
-![led off](https://user-images.githubusercontent.com/38412142/200311099-012d2626-60a6-4b22-8b3a-a71883ec35bf.jpeg)
+![led off](https://user-images.githubusercontent.com/38412142/206601359-1592da0d-4713-4634-9aff-6134bd0d1be6.jpeg)
 
 - Erro
 
