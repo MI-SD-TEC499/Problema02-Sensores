@@ -231,7 +231,7 @@ Exibição do display ao selecionar a opção 6:
 
 Do lado da NodeMCU, para testar o funcionamento dos sensores, utilizamos eles para controlar o LED. Por exemplo, com os sensores digitais, caso ativados eles acendem o LED da ESP8266, para o teste do sensor analógico, ele é utilizado para controlar a intensidade do brilho desse led.
 
-## 5. Referências
+## 6. Referências
 
 - Documentação da Biblioteca WiringPi, para controle de periféricos da Raspberry através da linguagem C:
  
