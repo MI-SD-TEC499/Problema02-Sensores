@@ -78,6 +78,52 @@ void print_display(uint8_t *resposta){
 }
 ```
 
+Através da raspberry iniciamos a comunicação UART, para isso utilizamos duas bibliotecas, “termios.h”  e “unistd.h”. 
+Na função “open_serial_port” recebemos o file descriptor referente ao arquivo “ttyS0” que está associado à UART da placa:
+
+```c
+static void open_serial_port(void) {
+    g_fd = file_open_and_get_descriptor(SERIAL_PORT_PATH);
+    if(g_fd < 0) {
+        printf("Something went wrong while opening the port...\r\n");
+        exit(EXIT_FAILURE);
+    }
+}
+```
+em seguida no método “configure_serial_port” , armazenamos os atributos da UART e definimos a Baud Rate, por fim chamamos a função “cfmakeraw” que realiza as configurações finais.
+
+```c
+static void configure_serial_port(void) {
+    if(tcgetattr(g_fd, &g_tty)) {
+        printf("Something went wrong while getting port attributes...\r\n");
+        exit(EXIT_FAILURE);
+    }
+
+	//115200
+    cfsetispeed(&g_tty,B9600);
+    cfsetospeed(&g_tty,B9600);
+
+    cfmakeraw(&g_tty);
+
+    if(tcsetattr(g_fd,TCSANOW,&g_tty)) {
+        printf("Something went wrong while setting port attributes...\r\n");
+        exit(EXIT_FAILURE);
+    }
+}
+```
+com a UART configurada, podemos iniciar o envio de dados utilizando a função “write” onde informamos o conteúdo e o tamanho da mensagem, a função read tem uma estrutura parecida, mas é usada para a leitura de dados.
+
+```c
+static int file_write_data(int fd, uint8_t *buff, uint32_t len_buff) {
+    return write(fd,buff,len_buff);
+}
+
+static int file_read_data(int fd, uint8_t *buff, uint32_t len_buff) {
+    return read(fd,buff,len_buff);
+}
+```
+
+
 ### 3.3 NodeMCU (ESP8266)
 
 Na NodeMCU há dois grandes módulos implementados. A leitura de informação dos sensores analógicos e digital, e assim como na Raspberry, a comunicação UART.
@@ -132,50 +178,7 @@ Para esse caso, basta acessar o diretório raíz do projeto através do terminal
 
 Com todos os componente em execução, já é possível realizar a utilização do projeto e testá-lo.
 
-Através da raspberry iniciamos a comunicação UART, para isso utilizamos duas bibliotecas, “termios.h”  e “unistd.h”. 
-Na função “open_serial_port” recebemos o file descriptor referente ao arquivo “ttyS0” que está associado à UART da placa:
 
-```c
-static void open_serial_port(void) {
-    g_fd = file_open_and_get_descriptor(SERIAL_PORT_PATH);
-    if(g_fd < 0) {
-        printf("Something went wrong while opening the port...\r\n");
-        exit(EXIT_FAILURE);
-    }
-}
-```
-em seguida no método “configure_serial_port” , armazenamos os atributos da UART e definimos a Baud Rate, por fim chamamos a função “cfmakeraw” que realiza as configurações finais.
-
-```c
-static void configure_serial_port(void) {
-    if(tcgetattr(g_fd, &g_tty)) {
-        printf("Something went wrong while getting port attributes...\r\n");
-        exit(EXIT_FAILURE);
-    }
-
-	//115200
-    cfsetispeed(&g_tty,B9600);
-    cfsetospeed(&g_tty,B9600);
-
-    cfmakeraw(&g_tty);
-
-    if(tcsetattr(g_fd,TCSANOW,&g_tty)) {
-        printf("Something went wrong while setting port attributes...\r\n");
-        exit(EXIT_FAILURE);
-    }
-}
-```
-com a UART configurada, podemos iniciar o envio de dados utilizando a função “write” onde informamos o conteúdo e o tamanho da mensagem, a função read tem uma estrutura parecida, mas é usada para a leitura de dados.
-
-```c
-static int file_write_data(int fd, uint8_t *buff, uint32_t len_buff) {
-    return write(fd,buff,len_buff);
-}
-
-static int file_read_data(int fd, uint8_t *buff, uint32_t len_buff) {
-    return read(fd,buff,len_buff);
-}
-```
 
 
 ## 5. Testes de Funcionamento
